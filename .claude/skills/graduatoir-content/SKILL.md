@@ -20,7 +20,9 @@ Write everything for the audience in **Bahasa Malaysia** (casual-professional, "
 | Text | white |
 | Font | Inter 400 / 600 / 800 only |
 | Motif | rising steps line (GE → Ir.) |
-| Official logo | `assets/logo_official.png` when present (shown on a white card); otherwise use the text wordmark |
+| Official logo | `assets/logo_official.png` (owner's file, never edit). The renderer uses `assets/logo_card.png` (same logo, background flattened to pure white) on a white card: on carousel end slides and on reels with `end:'logo'` |
+| FB Page cover | `assets/fb_page_cover.png` (owner's banner; mentions graduatoir.com, Ebook, AI Toolkit, Mentorship) |
+| Website | graduatoir.com |
 
 All of this is already encoded in `scripts/render.js`. Do not hand-draw new layouts. Write data files and render.
 

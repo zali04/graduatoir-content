@@ -169,7 +169,7 @@ Ditulis oleh Ir. Mohd Norzali Bin Zulkifli, Professional Engineer (Chemical Engi
 Panduan pendidikan bebas · Bukan penerbitan rasmi BEM
 
 ${TAGS}`},
-{d:'2026-11-28',day:'Sabtu',kind:'Reel',slug:'Reel_Jom_Sertai',reel:{k:'GRADUATOIR · KOMUNITI',t:'Jom sertai komuniti percuma GraduaToIr',p:['Isnin: Soalan PAE','Rabu: Tip & AI Prompt','Jumaat: Kongsi Kemajuan'],end:'logo',c1:'Komuniti percuma untuk graduan jurutera',c2:'',c3:'Link di bio'},
+{d:'2026-11-28',day:'Sabtu',kind:'Reel',slug:'Reel_Jom_Sertai',reel:{k:'GRADUATOIR · KOMUNITI',t:'Jom sertai komuniti percuma GraduaToIr',p:['Isnin: Soalan PAE','Rabu: Tip & AI Prompt','Jumaat: Kongsi Kemajuan'],end:'logo',c1:'Untuk graduan jurutera Malaysia',c2:'Sertai komuniti',c3:'Percuma · link di bio'},
 cap:`Bersedia untuk PAE tak perlu seorang diri 🤝
 
 Dalam komuniti percuma GraduaToIr setiap minggu:
