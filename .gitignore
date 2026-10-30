@@ -1,0 +1,4 @@
+node_modules/
+**/_frames/
+*.zip
+content/*/out/*.html
