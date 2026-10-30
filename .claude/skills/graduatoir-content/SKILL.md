@@ -20,7 +20,7 @@ Write everything for the audience in **Bahasa Malaysia** (casual-professional, "
 | Text | white |
 | Font | Inter 400 / 600 / 800 only |
 | Motif | rising steps line (GE → Ir.) |
-| Official logo | `assets/logo_official.png` (owner's file, never edit). The renderer uses `assets/logo_card.png` (same logo, background flattened to pure white) on a white card: on carousel end slides and on reels with `end:'logo'` |
+| Official logo | `assets/logo_official.png` (owner's file, never edit). The renderer uses `assets/logo_card.png` (same logo, background flattened to pure white) on a white card: large on carousel end slides and on reels with `end:'logo'`, small (110 px) in the top-right corner of every other still image |
 | FB Page cover | `assets/fb_page_cover.png` (owner's banner; mentions graduatoir.com, Ebook, AI Toolkit, Mentorship) |
 | Website | graduatoir.com |
 
