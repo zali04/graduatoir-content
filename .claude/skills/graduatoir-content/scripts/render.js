@@ -43,5 +43,8 @@ const anim=()=>{const ease=x=>1-Math.pow(1-Math.min(1,Math.max(0,x)),3);const in
    args.push('-c:v','libx264','-profile:v','high','-preset','slow','-crf','18','-pix_fmt','yuv420p','-movflags','+faststart','-t','14',`${dir}/${p.slug}.mp4`);execFileSync('ffmpeg',args);
    fs.copyFileSync(`${fr}/0090.jpg`,`${dir}/thumbnail.jpg`);
    const strip=x=>x.replace(/<[^>]+>/g,'').replace(/&amp;/g,'&');fs.writeFileSync(`${dir}/skrip_suara.txt`,[strip(p.reel.t)+'.',...p.reel.p.map((x,i)=>`${i+1}. ${strip(x)}`),[p.reel.c1,p.reel.c2,p.reel.c3].filter(Boolean).map(strip).join(' ')].join('\n'));fs.rmSync(fr,{recursive:true});}
+  // Threads: parts[] = one post + its chained replies, each part max 500 characters
+  if(p.parts){p.parts.forEach((t,i)=>{if([...t].length>500)console.warn('THREADS_TOO_LONG',dir,i+1,[...t].length)});
+   p.cap=p.parts.length>1?p.parts.map((t,i)=>`[${i+1}/${p.parts.length}]\n${t}`).join('\n\n'):p.parts[0];}
   fs.writeFileSync(`${dir}/caption.txt`,p.cap);console.log('done',dir);}
  await b.close();})();

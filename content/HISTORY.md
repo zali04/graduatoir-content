@@ -10,3 +10,4 @@ One line per published topic, so future months do not repeat themselves. Newest 
 - Instagram gambar: quote rekod pengalaman; AI prompt petakan pengalaman; situasi etika; promo ebook
 - Instagram reels: 3 kesilapan T&E Report; formula 3 baris (situasi/tindakan/hasil); 3 soalan sebelum temu duga; jom sertai komuniti
 - FB Page: same 12 visuals as Instagram (Selasa/Khamis/Sabtu 8:00 malam), captions rewritten for Facebook, links in first comment
+- Threads (Isnin–Jumaat 12:30): soalan tangguh persediaan; 5 tanda (carousel); thread rekod projek 15 minit seminggu; quote rekod; check-in Jumaat x4; soalan bahagian laporan; "saya" bukan "kami" (carousel); thread formula 3 baris; AI prompt petakan; soalan temu duga ditakuti; latihan temu duga AI (carousel); thread 3 soalan sebelum temu duga; hot take "kurang latihan menerangkan"; situasi etika; pelan 30 hari (carousel); thread penyemak jujur / mentor; promo ebook

@@ -1,0 +1,5 @@
+🤖 AI prompt untuk jurutera yang rasa "pengalaman saya tak cukup":
+
+"Saya jurutera [bidang], [X] tahun pengalaman. Ini senarai projek dan tugasan saya: [senarai]. Susun mengikut kategori: reka bentuk, pengurusan projek, keselamatan, komunikasi teknikal. Tunjukkan bahagian yang masih lemah."
+
+Jangan masukkan maklumat sulit majikan. Simpan post ni 🔖
