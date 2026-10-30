@@ -38,9 +38,10 @@ const anim=()=>{const ease=x=>1-Math.pow(1-Math.min(1,Math.max(0,x)),3);const in
   if(p.reel){const pg=await b.newPage({viewport:{width:1080,height:1920}});await pg.setContent(`<!doctype html><html><head><meta charset="utf-8"><style>${RCSS}</style></head><body>${rhtml(p.reel)}</body></html>`);
    await pg.evaluate(()=>document.fonts.ready);await pg.waitForFunction(()=>[...document.images].every(i=>i.complete));await pg.evaluate(anim);const fr=`${dir}/_frames`;fs.mkdirSync(fr,{recursive:true});
    for(let i=0;i<420;i++){await pg.evaluate(t=>render(t),i/30);await pg.screenshot({path:`${fr}/${String(i).padStart(4,'0')}.jpg`,type:'jpeg',quality:95});}await pg.close();
-   const a=fs.existsSync(path.join(A,'music.m4a'))?path.join(A,'music.m4a'):null,args=['-v','error','-y','-framerate','30','-i',`${fr}/%04d.jpg`];
+   const a=fs.existsSync(path.join(A,'music_instrumental.m4a'))?path.join(A,'music_instrumental.m4a'):null,args=['-v','error','-y','-framerate','30','-i',`${fr}/%04d.jpg`];
    if(a)args.push('-i',a,'-i',a,'-filter_complex','[1:a][2:a]acrossfade=d=1.5[a0];[a0]atrim=0:14,afade=t=in:d=0.3,afade=t=out:st=12.5:d=1.5,loudnorm=I=-14:TP=-1.5[a]','-map','0:v','-map','[a]','-c:a','aac','-b:a','192k','-ar','48000');
    args.push('-c:v','libx264','-profile:v','high','-preset','slow','-crf','18','-pix_fmt','yuv420p','-movflags','+faststart','-t','14',`${dir}/${p.slug}.mp4`);execFileSync('ffmpeg',args);
-   fs.copyFileSync(`${fr}/0090.jpg`,`${dir}/thumbnail.jpg`);fs.rmSync(fr,{recursive:true});}
+   fs.copyFileSync(`${fr}/0090.jpg`,`${dir}/thumbnail.jpg`);
+   const strip=x=>x.replace(/<[^>]+>/g,'').replace(/&amp;/g,'&');fs.writeFileSync(`${dir}/skrip_suara.txt`,[strip(p.reel.t)+'.',...p.reel.p.map((x,i)=>`${i+1}. ${strip(x)}`),[p.reel.c1,p.reel.c2,p.reel.c3].filter(Boolean).map(strip).join(' ')].join('\n'));fs.rmSync(fr,{recursive:true});}
   fs.writeFileSync(`${dir}/caption.txt`,p.cap);console.log('done',dir);}
  await b.close();})();

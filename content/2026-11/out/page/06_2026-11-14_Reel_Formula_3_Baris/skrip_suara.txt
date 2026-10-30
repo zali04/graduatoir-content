@@ -1,0 +1,5 @@
+Formula 3 baris untuk huraikan setiap pengalaman.
+1. Situasi: apa masalah atau keperluan projek.
+2. Tindakan saya: apa yang SAYA buat dan putuskan.
+3. Hasil: apa kesannya, dengan angka jika boleh.
+Lebih banyak formula & templat dalam Graduate to Ir. Ebook · link di komen

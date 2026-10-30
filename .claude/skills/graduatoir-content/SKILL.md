@@ -87,7 +87,7 @@ Length limits that fit the layouts: cover title ≤ 60 characters; item title �
    S=.claude/skills/graduatoir-content/scripts
    for ch in group instagram page; do node $S/render.js content/YYYY-MM/$ch.js content/YYYY-MM/out/$ch; done
    ```
-   Reels take about 30 s each. ffmpeg is required.
+   Reels take about 30 s each. ffmpeg is required. Reels use `assets/music_instrumental.m4a`, the owner's music with the original voiceover removed: Spleeter 2-stem accompaniment, using only the part after the voiceover ended (seconds 3.1–9.95 of the source), looped three times (18.5 s). A Spleeter check on a finished reel shows vocals at most −62 dB against music at −14 dB. Only ever use an instrumental track: never an audio track taken straight from another video, because it may contain a voiceover that does not match the reel. `skrip_suara.txt` next to each reel is a voiceover script the owner can record in-app.
 5. **Visual QA (mandatory):** build a contact sheet of every PNG, plus a frame at 8 s and at 12 s of every reel, then look at it. Check for overlapping or cut-off text, the wrong font, and missing images. Fix the data and re-render until it is clean. A renderer `OVERFLOW` warning means a text is too long, so shorten it.
 6. **Checklists:**
    ```bash
