@@ -1,6 +1,6 @@
 ---
 name: graduatoir-content
-description: Generate a month of GraduaToIr social media content (Facebook Page, Facebook Group, Instagram, Threads) in the approved brand layout - carousels, single images, 14s reels, captions and a scheduling checklist. Use when asked to make, plan or render GraduaToIr / Graduate to Ir. posts, a content calendar, or the monthly content run.
+description: Generate a month of GraduaToIr social media content (Facebook Page, Facebook Group, Instagram, Threads, TikTok) in the approved brand layout - carousels, single images, 14s reels, captions and a scheduling checklist. Use when asked to make, plan or render GraduaToIr / Graduate to Ir. posts, a content calendar, or the monthly content run.
 ---
 
 # GraduaToIr monthly content
@@ -34,6 +34,7 @@ All of this is already encoded in `scripts/render.js`. Do not hand-draw new layo
 | Instagram | Selasa, Khamis, Sabtu | 9:00 malam | Reach and saves | carousel (Selasa), single (Khamis), reel (Sabtu) |
 | FB Page | Selasa, Khamis, Sabtu | 8:00 malam | Public face, ads later | reuse that week's Instagram visuals with FB captions |
 | Threads | Isnin–Jumaat | 12:30 tengah hari | Conversation, opinions, quick tips | mostly text; Rabu = chained thread (3–4 parts); Selasa = that week's Instagram carousel; one promo post with `{type:'promo',cta:'Link di profil ↓'}` |
+| TikTok | Isnin, Rabu, Jumaat | 9:30 malam | Reach to new, younger graduates | 14 s vertical videos with `safe:'tiktok'`; about 2/3 new topics, 1/3 that month's Instagram reels moved into the TikTok safe zone |
 
 Group weekly pattern: **Isnin = Soalan PAE** (question thread), **Rabu = Tip & AI Prompt**, **Jumaat = Kongsi Kemajuan** (progress thread). The last Friday of the month may softly promote the ebook.
 
@@ -49,6 +50,7 @@ Give each month one theme per week, shared across channels, so the Group threads
 - **Examples:** label invented example sentences as rekaan (fictional).
 - **No repeats:** read `content/HISTORY.md` first, and pick topics or angles not used in the last 3 months.
 - **Threads:** each part ≤ 500 characters (the renderer warns `THREADS_TOO_LONG`). Write like a person talking, not a caption: short lines, one idea per post, end with a question. Say "link di profil" (not "bio"); in reused slides replace "di bio" with "di profil". No hashtag block; at most one topic tag, added in-app.
+- **TikTok:** every reel needs `safe:'tiktok'`, which keeps text clear of the right-hand buttons and the bottom caption and flows the title, rule and points top-down. End cards: `end:'logo'` with "Follow GraduaToIr", or `end:'cover'` for the ebook (at most one ebook video a month). Say "link di profil". Captions are one or two short sentences plus `#PAE #jurutera #engineeringmalaysia #graduateengineer #kerjaya` (at most 1 extra tag). A bio link needs a TikTok Business account or enough followers, so remind the owner if the link is not there yet.
 - **Hashtags (Instagram):** `#PAE #BEM #ProfessionalEngineer #GraduateEngineer #JuruteraMalaysia`, plus at most 2 topical tags.
 
 ## Data format
@@ -80,7 +82,7 @@ Threads posts use `parts` instead of `cap` (part 1 = main post, the rest = chain
 {d:'2026-12-01',day:'Selasa',kind:'Carousel',slug:'Carousel_Topik',slides:slidesOf('Carousel_Topik'),parts:['Teks post']}
 ```
 
-`content/2026-11/threads.js` shows the `slidesOf()` helper that reuses Instagram slides.
+`content/2026-11/threads.js` shows the `slidesOf()` helper that reuses Instagram slides. `content/2026-11/tiktok.js` shows `fromIG()` (reuse an Instagram reel in the TikTok safe zone) and `V()` (a new TikTok video).
 
 Length limits that fit the layouts: cover title ≤ 60 characters; item title ≤ 70; body ≤ 160 (`small:true` up to about 220); reel title ≤ 55; each reel point ≤ 50; a carousel has 5–7 slides. The renderer shrinks text that overflows, but stay within these limits anyway. Escape `&` as `&amp;` inside slide text. Captions are plain text, where emoji are fine. In slide text, use only the arrows already used (→ ↓); emoji do not render in Inter.
 
@@ -92,11 +94,11 @@ Length limits that fit the layouts: cover title ≤ 60 characters; item title �
    export NODE_PATH=$(npm root -g)   # Playwright is preinstalled globally
    ```
 2. **Plan:** read `content/HISTORY.md`. Choose 4 weekly themes for the target month (the month after the run date). List every date per channel using the rhythm above, from the first matching weekday of the month through the last.
-3. **Write** `content/YYYY-MM/group.js`, `instagram.js`, `page.js` and `threads.js`. For the Page, reuse the Instagram slides/reels for the same dates and rewrite the captions for Facebook (no hashtag block, link in comment).
+3. **Write** `content/YYYY-MM/group.js`, `instagram.js`, `page.js`, `threads.js` and `tiktok.js`. For the Page, reuse the Instagram slides/reels for the same dates and rewrite the captions for Facebook (no hashtag block, link in comment).
 4. **Render** each channel:
    ```bash
    S=.claude/skills/graduatoir-content/scripts
-   for ch in group instagram page threads; do node $S/render.js content/YYYY-MM/$ch.js content/YYYY-MM/out/$ch; done
+   for ch in group instagram page threads tiktok; do node $S/render.js content/YYYY-MM/$ch.js content/YYYY-MM/out/$ch; done
    ```
    Reels take about 30 s each. ffmpeg is required. Reels use `assets/music_instrumental.m4a`, the owner's music with the original voiceover removed: Spleeter 2-stem accompaniment, using only the part after the voiceover ended (seconds 3.1–9.95 of the source), looped three times (18.5 s). A Spleeter check on a finished reel shows vocals at most −62 dB against music at −14 dB. Only ever use an instrumental track: never an audio track taken straight from another video, because it may contain a voiceover that does not match the reel. `skrip_suara.txt` next to each reel is a voiceover script the owner can record in-app.
 5. **Visual QA (mandatory):** build a contact sheet of every PNG, plus a frame at 8 s and at 12 s of every reel, then look at it. Check for overlapping or cut-off text, the wrong font, and missing images. Fix the data and re-render until it is clean. A renderer `OVERFLOW` warning means a text is too long, so shorten it.
@@ -106,12 +108,13 @@ Length limits that fit the layouts: cover title ≤ 60 characters; item title �
    node $S/checklist.js content/YYYY-MM/instagram.js content/YYYY-MM/out/instagram "Instagram <Bulan> <Tahun>" "9:00 malam"
    node $S/checklist.js content/YYYY-MM/page.js content/YYYY-MM/out/page "FB Page <Bulan> <Tahun>" "8:00 malam"
    node $S/checklist.js content/YYYY-MM/threads.js content/YYYY-MM/out/threads "Threads <Bulan> <Tahun>" "12:30 tengah hari" "Untuk setiap post: muat turun gambar (jika ada), salin teks, kemudian dalam Threads (app atau threads.com) tulis post baharu dan pilih <b>Schedule</b> pada menu ⋯. Untuk thread berantai, tambah setiap balasan dengan <b>Add to thread</b> sebelum jadualkan. Tandakan kotak bila siap."
+   node $S/checklist.js content/YYYY-MM/tiktok.js content/YYYY-MM/out/tiktok "TikTok <Bulan> <Tahun>" "9:30 malam" "Untuk setiap video: muat turun MP4 dan salin caption. Di komputer, buka TikTok Studio (tiktok.com), muat naik video, tampal caption, tetapkan cover, kemudian pilih <b>Schedule</b> dengan tarikh dan masa. Penjadualan TikTok biasanya terhad kira-kira 10 hari ke depan, jadi jadualkan secara berperingkat. Tandakan kotak bila siap."
    ```
    Each command writes a self-contained `Senarai_Semak_*.html` (media embedded, copy buttons, checkboxes) into the out folder. Also zip each out folder for download.
 7. **History:** append the month's topics to `content/HISTORY.md`.
 8. **Deliver:**
    - Commit the data files, rendered media and history (the HTML and zips are git-ignored), then push to `main`.
-   - Send the four checklists and zips to the owner with SendUserFile.
+   - Send the five checklists and zips to the owner with SendUserFile.
    - Summarise in Bahasa Malaysia: the themes, how many posts each channel gets, and anything the owner must do by hand (pin link comments, set the reel cover).
-   - Scheduling is manual: Group via the Group's Scheduled posts; Instagram and Page via Meta Business Suite Planner; Threads in the Threads app or threads.com (⋯ → Schedule). Meta closed the Groups API in 2024, so tools cannot post to Groups.
+   - Scheduling is manual: Group via the Group's Scheduled posts; Instagram and Page via Meta Business Suite Planner; Threads in the Threads app or threads.com (⋯ → Schedule); TikTok in TikTok Studio on desktop (Schedule, usually up to about 10 days ahead, so in batches). Meta closed the Groups API in 2024, so tools cannot post to Groups.
 9. **Optional, Canva:** if `curl -s -o /dev/null -w "%{http_code}" https://www.canva.com/` returns a 2xx/3xx code and the Canva tools are connected, upload each PNG/MP4 with Canva `create-upload-url`, then `curl -X POST -H "Content-Type: application/octet-stream" --data-binary @FILE URL`. Never use Canva AI generation: the account's AI quota is limited, and the layouts here are the approved ones.
