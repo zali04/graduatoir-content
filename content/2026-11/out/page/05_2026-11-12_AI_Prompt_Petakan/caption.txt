@@ -1,0 +1,11 @@
+🤖 AI Prompt: Petakan pengalaman anda
+
+Ramai graduan rasa "pengalaman saya tak cukup", padahal sebenarnya cuma belum tersusun.
+
+Salin prompt ni ke ChatGPT / Claude:
+
+"Saya seorang jurutera [bidang] dengan [X] tahun pengalaman. Berikut ialah senarai projek dan tugasan saya: [senarai]. Bantu saya susun pengalaman ini mengikut kategori: reka bentuk, pengurusan projek, keselamatan, dan komunikasi teknikal. Tunjukkan juga bahagian mana yang masih lemah."
+
+💡 Jangan masukkan maklumat sulit majikan.
+
+Kongsi post ni dengan rakan jurutera yang sedang bersedia untuk PAE 🔁

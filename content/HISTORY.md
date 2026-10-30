@@ -9,4 +9,4 @@ One line per published topic, so future months do not repeat themselves. Newest 
 - Instagram carousel: 5 tanda patut mula bersedia; "saya" bukan "kami" (sebelum/selepas); latihan temu duga dengan AI 3 langkah; pelan 30 hari
 - Instagram gambar: quote rekod pengalaman; AI prompt petakan pengalaman; situasi etika; promo ebook
 - Instagram reels: 3 kesilapan T&E Report; formula 3 baris (situasi/tindakan/hasil); 3 soalan sebelum temu duga; jom sertai komuniti
-- FB Page: not produced for Nov 2026
+- FB Page: same 12 visuals as Instagram (Selasa/Khamis/Sabtu 8:00 malam), captions rewritten for Facebook, links in first comment
