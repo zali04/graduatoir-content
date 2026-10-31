@@ -1,5 +1,6 @@
 // Facebook/Instagram ads, Pakej Utama RM99. Feed = 4:5 stills; Reels/Stories = 9:16 videos with safe:'meta'
-const IG=require('../../2026-11/instagram.js');
+const IG=require('../../2026-11/instagram.js');const C=require('./copy.js');
+const cap=slug=>{const c=C[slug];return `NAMA IKLAN: ${c.name}\nSUDUT: ${c.angle}\n\n--- TEKS UTAMA (Primary text) ---\n${c.text}\n\n--- TAJUK (Headline) ---\n${c.headline}\n\n--- PENERANGAN (Description) ---\n${c.desc}\n\n--- BUTANG CTA ---\nLearn more / Ketahui lanjut\n\n--- URL ---\n${C.URL(c.name)}\n`};
 const END={end:'cover',c1:'Elak kesilapan ini dengan',c2:'Pakej Utama · RM99',c3:'12 Bab · 70 AI Prompts · 44 Templat',c4:'Panduan bebas · Bukan penerbitan rasmi BEM'};
 const kes=IG.find(p=>p.slug==='Reel_3_Kesilapan').reel;
 module.exports=[
@@ -10,7 +11,7 @@ module.exports=[
  {type:'item',n:'44',t:'Templat toolkit.',b:'Siap untuk diisi, supaya anda tak mula dari kertas kosong.'},
  {type:'item',n:'30',t:'Hari pelan tindakan.',b:'Langkah mingguan supaya anda kekal konsisten.'},
  {type:'end',t:'Pakej Utama RM99',b:'Ada juga Pakej Starter RM39 dan Pakej Mentor 1-to-1 RM299.',cta:'Ketahui lanjut ↓'}],
- cap:'(lihat Teks_Iklan.md)'},
-{d:'2026-11-01',day:'Iklan',kind:'Gambar 4:5 (Feed)',slug:'Ad_Static_RM99',slides:[{type:'promo',price:'Pakej Utama · RM99',cta:'Ketahui lanjut ↓'}],cap:'(lihat Teks_Iklan.md)'},
-{d:'2026-11-01',day:'Iklan',kind:'Video 9:16 (Reels/Stories)',slug:'Ad_Video_3_Kesilapan',reel:Object.assign({},kes,{safe:'meta'},END),cap:'(lihat Teks_Iklan.md)'},
-{d:'2026-11-01',day:'Iklan',kind:'Video 9:16 (Reels/Stories)',slug:'Ad_Video_Apa_Anda_Dapat',reel:Object.assign({k:'PAKEJ UTAMA · GRADUATE TO IR.',t:'Bersedia ke Ir. dengan sistem, bukan meneka',p:['12 bab panduan langkah demi langkah.','70 AI prompts siap guna.','44 templat dan pelan tindakan 30 hari.'],safe:'meta'},END,{c1:'Semua dalam satu pakej'}),cap:'(lihat Teks_Iklan.md)'}];
+ cap:cap('Ad_Carousel_Apa_Anda_Dapat')},
+{d:'2026-11-01',day:'Iklan',kind:'Gambar 4:5 (Feed)',slug:'Ad_Static_RM99',slides:[{type:'promo',price:'Pakej Utama · RM99',cta:'Ketahui lanjut ↓'}],cap:cap('Ad_Static_RM99')},
+{d:'2026-11-01',day:'Iklan',kind:'Video 9:16 (Reels/Stories)',slug:'Ad_Video_3_Kesilapan',reel:Object.assign({},kes,{safe:'meta'},END),cap:cap('Ad_Video_3_Kesilapan')},
+{d:'2026-11-01',day:'Iklan',kind:'Video 9:16 (Reels/Stories)',slug:'Ad_Video_Apa_Anda_Dapat',reel:Object.assign({k:'PAKEJ UTAMA · GRADUATE TO IR.',t:'Bersedia ke Ir. dengan sistem, bukan meneka',p:['12 bab panduan langkah demi langkah.','70 AI prompts siap guna.','44 templat dan pelan tindakan 30 hari.'],safe:'meta'},END,{c1:'Semua dalam satu pakej'}),cap:cap('Ad_Video_Apa_Anda_Dapat')}];

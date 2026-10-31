@@ -1,11 +1,19 @@
 ---
 name: graduatoir-content
-description: Generate a month of GraduaToIr social media content (Facebook Page, Facebook Group, Instagram, Threads, TikTok) in the approved brand layout - carousels, single images, 14s reels, captions and a scheduling checklist. Use when asked to make, plan or render GraduaToIr / Graduate to Ir. posts, a content calendar, or the monthly content run.
+description: Generate a month of GraduaToIr social media content (Facebook Page, Facebook Group, Instagram, Threads, TikTok) and the month's paid-ad creatives for the RM99 package in the approved brand layout - carousels, single images, 14s reels, captions and a scheduling checklist. Use when asked to make, plan or render GraduaToIr / Graduate to Ir. posts, a content calendar, or the monthly content run.
 ---
 
 # GraduaToIr monthly content
 
-GraduaToIr helps Malaysian graduate engineers prepare for the BEM Professional Assessment Examination (PAE) and reach Ir. status. The owner is Ir. Mohd Norzali Bin Zulkifli, Professional Engineer (Chemical Engineering). The paid product is the ebook **Graduate to Ir.** (12 Bab · 70 AI Prompts · 44 Toolkit Templates · Pelan Tindakan 30 Hari). The free community is the Facebook Group.
+GraduaToIr helps Malaysian graduate engineers prepare for the BEM Professional Assessment Examination (PAE) and reach Ir. status. The owner is Ir. Mohd Norzali Bin Zulkifli, Professional Engineer (Chemical Engineering). The free community is the Facebook Group. graduatoir.com (Sellhiz + Billplz) sells three packages:
+
+| Package | Price | Contents |
+|---|---|---|
+| Starter | RM39 | mini ebook 8 bab (PDF + EPUB), 7 editable worksheets, a fictional example workbook, 15 Starter AI Prompts, Pelan 90 hari |
+| **Pakej Utama Graduate to Ir.** | **RM99** | 12 Bab · 70 AI Prompts · 44 Toolkit Templates · Pelan Tindakan 30 Hari. This is what all organic content and ads promote |
+| Mentor | RM299 | Pakej Utama + 1-to-1 mentor. Sold through DMs and the community, never in cold ads |
+
+Never mix the contents of one package into another package's copy.
 
 Write everything for the audience in **Bahasa Malaysia** (casual-professional, "anda"), unless the owner asks otherwise.
 
@@ -34,6 +42,7 @@ All of this is already encoded in `scripts/render.js`. Do not hand-draw new layo
 | Instagram | Selasa, Khamis, Sabtu | 9:00 malam | Reach and saves | carousel (Selasa), single (Khamis), reel (Sabtu) |
 | FB Page | Selasa, Khamis, Sabtu | 8:00 malam | Public face, ads later | reuse that week's Instagram visuals with FB captions |
 | Threads | Isnin–Jumaat | 12:30 tengah hari | Conversation, opinions, quick tips | mostly text; Rabu = chained thread (3–4 parts); Selasa = that week's Instagram carousel; one promo post with `{type:'promo',cta:'Link di profil ↓'}` |
+| Iklan (FB/IG Ads) | always on | RM15/day sales + RM5/day retargeting (RM500/month) | Sell Pakej Utama RM99 | each month: 2 new creatives, 4:5 stills for Feed and 9:16 videos with `safe:'meta'` for Reels/Stories |
 | TikTok | Isnin, Rabu, Jumaat | 9:30 malam | Reach to new, younger graduates | 14 s vertical videos with `safe:'tiktok'`; about 2/3 new topics, 1/3 that month's Instagram reels moved into the TikTok safe zone |
 
 Group weekly pattern: **Isnin = Soalan PAE** (question thread), **Rabu = Tip & AI Prompt**, **Jumaat = Kongsi Kemajuan** (progress thread). The last Friday of the month may softly promote the ebook.
@@ -51,6 +60,7 @@ Give each month one theme per week, shared across channels, so the Group threads
 - **No repeats:** read `content/HISTORY.md` first, and pick topics or angles not used in the last 3 months.
 - **Threads:** each part ≤ 500 characters (the renderer warns `THREADS_TOO_LONG`). Write like a person talking, not a caption: short lines, one idea per post, end with a question. Say "link di profil" (not "bio"); in reused slides replace "di bio" with "di profil". No hashtag block; at most one topic tag, added in-app.
 - **TikTok:** every reel needs `safe:'tiktok'`, which keeps text clear of the right-hand buttons and the bottom caption and flows the title, rule and points top-down. End cards: `end:'logo'` with "Follow GraduaToIr", or `end:'cover'` for the ebook (at most one ebook video a month). Say "link di profil". Captions are one or two short sentences plus `#PAE #jurutera #engineeringmalaysia #graduateengineer #kerjaya` (at most 1 extra tag). The TikTok account is a Business account (confirmed Oct 2026), so the bio link is available.
+- **Ads:** follow `content/ads/IKLAN_PAKEJ_RM99.md` (the playbook: strategy, stop/scale rules, copy rules). No promised results ("confirm lulus", "dijamin"), no BEM logo, no personal-attribute call-outs ("Anda gagal PAE?"), only real testimonials with written permission, and urgency only if it is true. 9:16 ad videos use `safe:'meta'` (text above the bottom 35%, where the CTA and ad text sit). Feed stills are 4:5; `{type:'promo',price:'Pakej Utama · RM99',cta:'Ketahui lanjut ↓'}` adds a price pill.
 - **Hashtags (Instagram):** `#PAE #BEM #ProfessionalEngineer #GraduateEngineer #JuruteraMalaysia`, plus at most 2 topical tags.
 
 ## Data format
@@ -94,11 +104,16 @@ Length limits that fit the layouts: cover title ≤ 60 characters; item title �
    export NODE_PATH=$(npm root -g)   # Playwright is preinstalled globally
    ```
 2. **Plan:** read `content/HISTORY.md`. Choose 4 weekly themes for the target month (the month after the run date). List every date per channel using the rhythm above, from the first matching weekday of the month through the last.
-3. **Write** `content/YYYY-MM/group.js`, `instagram.js`, `page.js`, `threads.js` and `tiktok.js`. For the Page, reuse the Instagram slides/reels for the same dates and rewrite the captions for Facebook (no hashtag block, link in comment).
+3. **Write** `content/YYYY-MM/group.js`, `instagram.js`, `page.js`, `threads.js` and `tiktok.js`. For ads, write `content/ads/YYYY-MM/ads.js` and `content/ads/YYYY-MM/Teks_Iklan.md`:
+   - Read `content/ads/PRESTASI.md` (the owner's weekly ad results). Keep the angles that won and drop the ones that lost. If it is still empty, test angles not tried yet (bank in the playbook §5).
+   - Make **2 new creatives**, each testing one angle: one 9:16 video (`safe:'meta'`) and one 4:5 carousel or still. Name them `[format]_[angle]_v[n]` (e.g. `VID916_ai_v1`), as in the playbook.
+   - Put the copy for each creative in `content/ads/YYYY-MM/copy.js` (name, angle, primary text, headline, description) and set each ad's `cap` from it, so every rendered `caption.txt` holds the full copy, CTA and UTM URL. Then write `Teks_Iklan.md` from `copy.js`. `content/ads/2026-11/` shows the pattern. Never leave a caption that points to a file that does not exist.
+   - In `Teks_Iklan.md`, also list which existing ads to keep or switch off according to the playbook §8. For the Page, reuse the Instagram slides/reels for the same dates and rewrite the captions for Facebook (no hashtag block, link in comment).
 4. **Render** each channel:
    ```bash
    S=.claude/skills/graduatoir-content/scripts
    for ch in group instagram page threads tiktok; do node $S/render.js content/YYYY-MM/$ch.js content/YYYY-MM/out/$ch; done
+   node $S/render.js content/ads/YYYY-MM/ads.js content/ads/YYYY-MM/out
    ```
    Reels take about 30 s each. ffmpeg is required. Reels use `assets/music_instrumental.m4a`, the owner's music with the original voiceover removed: Spleeter 2-stem accompaniment, using only the part after the voiceover ended (seconds 3.1–9.95 of the source), looped three times (18.5 s). A Spleeter check on a finished reel shows vocals at most −62 dB against music at −14 dB. Only ever use an instrumental track: never an audio track taken straight from another video, because it may contain a voiceover that does not match the reel. `skrip_suara.txt` next to each reel is a voiceover script the owner can record in-app.
 5. **Visual QA (mandatory):** build a contact sheet of every PNG, plus a frame at 8 s and at 12 s of every reel, then look at it. Check for overlapping or cut-off text, the wrong font, and missing images. Fix the data and re-render until it is clean. A renderer `OVERFLOW` warning means a text is too long, so shorten it.
@@ -114,7 +129,7 @@ Length limits that fit the layouts: cover title ≤ 60 characters; item title �
 7. **History:** append the month's topics to `content/HISTORY.md`.
 8. **Deliver:**
    - Commit the data files, rendered media and history (the HTML and zips are git-ignored), then push to `main`.
-   - Send the five checklists and zips to the owner with SendUserFile.
+   - Send the five checklists and zips, the ad creatives zip and `Teks_Iklan.md` to the owner with SendUserFile.
    - Summarise in Bahasa Malaysia: the themes, how many posts each channel gets, and anything the owner must do by hand (pin link comments, set the reel cover).
    - Scheduling is manual: Group via the Group's Scheduled posts; Instagram and Page via Meta Business Suite Planner; Threads in the Threads app or threads.com (⋯ → Schedule); TikTok in TikTok Studio on desktop (Schedule, usually up to about 10 days ahead, so in batches). Meta closed the Groups API in 2024, so tools cannot post to Groups.
 9. **Optional, Canva:** if `curl -s -o /dev/null -w "%{http_code}" https://www.canva.com/` returns a 2xx/3xx code and the Canva tools are connected, upload each PNG/MP4 with Canva `create-upload-url`, then `curl -X POST -H "Content-Type: application/octet-stream" --data-binary @FILE URL`. Never use Canva AI generation: the account's AI quota is limited, and the layouts here are the approved ones.
